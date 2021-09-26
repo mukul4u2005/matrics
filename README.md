@@ -59,6 +59,29 @@ roleRef:
 Clone code first:
 
 ```
-
+git clone https://github.com/mukul4u2005/matrics.git
  
+```
+
+Build code:
+
+```
+GOOS=linux go build -o ./matrix-app .
+```
+
+Build docker image:
+
+```
+docker build -t matrix-app .
+```
+Tag image
+
+```
+docker tag matrix-app mpdocker2017/matrix-app:latest
+```
+Push image to Dockerhub 
+
+```
+docker push mpdocker2017/matrix-app:latest   
+```
 ```
