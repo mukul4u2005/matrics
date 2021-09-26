@@ -84,3 +84,6 @@ Push image to Dockerhub
 ```
 docker push mpdocker2017/matrix-app:latest   
 ```
+
+# Deploy Application on Kubernetes cluster and expose
+
