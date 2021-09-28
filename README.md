@@ -1,4 +1,4 @@
-# Matrics Scrapper
+# Metrics Scrapper
 
 This is Prometheus Integration with rest service exposed using golang application. Golang application is deployed on kubernetes cluster and exposed as rest endpoint url.
 
