@@ -87,3 +87,36 @@ docker push mpdocker2017/matrix-app:latest
 
 # Deploy Application on Kubernetes cluster and expose
 
+Create Secret for cluster api call:
+
+```
+ kubectl create secret generic cluster-secret --from-literal=TOKEN=<token> --from-literal=API_URL=<api-url>
+
+```
+
+Create deployment using yaml available in config folder:
+
+For metrics service (Please change the image url):
+
+```
+kubectl apply -f metrics-deployment.yml
+
+```
+Create Prometheus config map for configuration :
+
+```
+kubectl create configmap prome-config --from-file=<path>/prometheus.yml
+
+```
+
+Create Prometheus deployment:
+
+```
+kubectl apply -f prom-deployment.yml
+```
+
+# Access Prometheus using port-forward
+
+kubectl port-forward <pod-name> 9090:9090
+
+
