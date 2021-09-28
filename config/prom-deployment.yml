@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: prom-app
+  name: prom-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prom-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: prom-app
+    spec:
+      volumes:
+        - name: prometheus-config-volume
+          configMap:
+            defaultMode: 420
+            name: prome-config
+      containers:
+      - image: prom/prometheus
+        args:
+          - "--config.file=/etc/prometheus/prometheus.yml"
+        name: prometheus
+        resources: {}
+        ports:
+          - containerPort: 9090
+        volumeMounts:
+          - name: prometheus-config-volume
+            mountPath: /etc/prometheus/
+status: {}
