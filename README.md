@@ -85,14 +85,22 @@ Push image to Dockerhub
 docker push mpdocker2017/matrix-app:latest   
 ```
 
-# Deploy Application on Kubernetes cluster and expose
-
+# Configure configmap and secret for Prometheus and metrics service
 Create Secret for cluster api call, this secret is referenced in metrics deployment to configure as env. variables:
 
 ```
  kubectl create secret generic cluster-secret --from-literal=TOKEN=<token> --from-literal=API_URL=<api-url>
 
 ```
+
+Create Prometheus config map for scrapper configuration (For prometheus deployment):
+
+```
+kubectl create configmap prome-config --from-file=<path>/prometheus.yml
+
+```
+# Deploy Application on Kubernetes cluster and expose
+
 
 Create deployment using yaml available in config folder:
 
@@ -102,12 +110,7 @@ For metrics service (Please change the image url):
 kubectl apply -f metrics-deployment.yml
 
 ```
-Create Prometheus config map for scrapper configuration (For prometheus deployment):
 
-```
-kubectl create configmap prome-config --from-file=<path>/prometheus.yml
-
-```
 
 Create Prometheus deployment:
 
