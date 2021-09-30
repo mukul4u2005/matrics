@@ -117,6 +117,6 @@ kubectl apply -f prom-deployment.yml
 
 # Access Prometheus using port-forward
 
-kubectl port-forward <pod-name> 9090:9090
+kubectl port-forward pod-name 9090:9090
 
 
