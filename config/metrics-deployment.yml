@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: metrics-app
+  name: metrics-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: metrics-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: metrics-app
+    spec:
+      serviceAccountName: pod-service-account
+      serviceAccount: pod-service-account   
+      containers:
+      - image: docker.io/mpdocker2017/matrix-app:latest
+        envFrom:
+        - secretRef: 
+            name: cluster-secret
+        name: matrix-app
+        resources: {}
+        ports:
+          - containerPort: 9000        
+status: {}
